@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Avatar Builder</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f4f6fb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      margin: 0 auto 16px;
+    }
+
+    .avatar-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .label {
+      min-width: 70px;
+      text-align: right;
+      font-size: 14px;
+    }
+
+    button {
+      border-radius: 999px;
+      border: none;
+      padding: 6px 10px;
+      cursor: pointer;
+      background: #111827;
+      color: white;
+      font-size: 14px;
+    }
+
+    button:active {
+      transform: scale(0.96);
+    }
+
+    .value {
+      min-width: 90px;
+      text-align: center;
+      font-size: 13px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="avatar-wrapper">
+      <!-- Orden de capas: piel → cara → pelo -->
+      <img id="skinLayer" class="avatar-layer" src="img/skin1.png" alt="piel">
+      <img id="faceLayer" class="avatar-layer" src="img/face1.png" alt="cara">
+      <img id="hairLayer" class="avatar-layer" src="img/hair1.png" alt="pelo">
+    </div>
+
+    <div class="controls">
+      <div class="control-row">
+        <span class="label">Piel</span>
+        <button onclick="changePart('skin', -1)">◀</button>
+        <span id="skinLabel" class="value"></span>
+        <button onclick="changePart('skin', 1)">▶</button>
+      </div>
+
+      <div class="control-row">
+        <span class="label">Cara</span>
+        <button onclick="changePart('face', -1)">◀</button>
+        <span id="faceLabel" class="value"></span>
+        <button onclick="changePart('face', 1)">▶</button>
+      </div>
+
+      <div class="control-row">
+        <span class="label">Pelo</span>
+        <button onclick="changePart('hair', -1)">◀</button>
+        <span id="hairLabel" class="value"></span>
+        <button onclick="changePart('hair', 1)">▶</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Aquí pones los nombres de TUS imágenes
+    const options = {
+      skin: [
+        { src: "img/skin1.png", name: "Piel 1" },
+        { src: "img/skin2.png", name: "Piel 2" },
+        { src: "img/skin3.png", name: "Piel 3" }
+      ],
+      face: [
+        { src: "img/face1.png", name: "Seria" },
+        { src: "img/face2.png", name: "Sonrisa" },
+        { src: "img/face3.png", name: "Enojada" }
+      ],
+      hair: [
+        { src: "img/hair1.png", name: "Moño" },
+        { src: "img/hair2.png", name: "Coleta" },
+        { src: "img/hair3.png", name: "Corto" }
+      ]
+    };
+
+    const state = {
+      skin: 0,
+      face: 0,
+      hair: 0
+    };
+
+    function updateLayers() {
+      const skin = options.skin[state.skin];
+      const face = options.face[state.face];
+      const hair = options.hair[state.hair];
+
+      document.getElementById("skinLayer").src = skin.src;
+      document.getElementById("faceLayer").src = face.src;
+      document.getElementById("hairLayer").src = hair.src;
+
+      document.getElementById("skinLabel").textContent = skin.name;
+      document.getElementById("faceLabel").textContent = face.name;
+      document.getElementById("hairLabel").textContent = hair.name;
+    }
+
+    function changePart(part, step) {
+      const max = options[part].length;
+      state[part] = (state[part] + step + max) % max; // bucle infinito
+      updateLayers();
+    }
+
+    // Al cargar la página
+    updateLayers();
+  </script>
+</body>
+</html>
