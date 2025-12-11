@@ -13,25 +13,32 @@
     justify-content: center;
   }
 
-  /* CONTENEDOR QUE EVITA SCROLLS EN NOTION */
+  /* CONTENEDOR PRINCIPAL PARA EL WIDGET */
   .card {
-    width: 220px;
-    height: 220px;              /* Altura fija → evita scroll */
-    overflow: hidden;           /* 🔥 Oculta cualquier sobrante */
+    width: 230px;
+    /* altura la deja que se adapte al contenido */
     background: #ffffff;
+    margin: 0 auto;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;   /* 🔥 avatar arriba, controles abajo */
+    align-items: center;
+    justify-content: flex-start;
+
+    overflow: hidden;         /* evita scroll dentro del iframe */
+  }
+
+  /* CABEZA MÁS GRANDE */
+  .avatar-wrapper {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 4px;       /* un poquito de espacio con los controles */
+    position: relative;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-  }
-
-  /* AVATAR 125% MÁS GRANDE */
-  .avatar-wrapper {
-    width: 180px;
-    height: 180px;
-    transform: scale(1.5);      /* 🔥 Aumenta tamaño 125% */
-    transform-origin: center;
-    position: relative;
   }
 
   .avatar-layer {
@@ -43,12 +50,13 @@
     pointer-events: none;
   }
 
-  /* CONTROLES, PERO LOS DEJAMOS FUERA DEL ÁREA VISIBLE */
+  /* CONTROLES DEBAJO DEL AVATAR */
   .controls {
     display: flex;
     flex-direction: column;
-    gap: 6px;                     /* menos espacio entre filas */
-    margin-top: 4px;
+    gap: 4px;
+    margin-top: 0;
+    margin-bottom: 4px;
   }
 
   .control-row {
@@ -59,31 +67,30 @@
   }
 
   .label {
-    min-width: 55px;               /* más compacto */
+    min-width: 45px;
     text-align: right;
-    font-size: 13px;
+    font-size: 11px;
   }
 
   /* BOTONES MÁS PEQUEÑOS */
   button {
     border-radius: 99px;
     border: none;
-    padding: 2px 4px;              /* antes era 6px 10px */
+    padding: 3px 6px;
     cursor: pointer;
     background: #111827;
     color: white;
-    font-size: 6px;               /* más pequeños */
+    font-size: 10px;
   }
 
   button:active {
-    transform: scale(0.93);        /* animación linda */
+    transform: scale(0.95);
   }
 
-  /* TEXTO DEL VALOR MÁS COMPACTO */
   .value {
     min-width: 50px;
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
     color: #6b7280;
   }
 </style>
