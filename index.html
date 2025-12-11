@@ -3,87 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <title>Pixel.me</title>
-  <style>
-    body {
-      font-family: system-ui, sans-serif;
-      background: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    background: #ffffff;           /* mismo color que la card */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
 
-    .card {
-      padding: 20px;
-      width: 260px; 
-      height: auto;
-      margin: 0 auto;
-      position: relative;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
+  /* CARD INVISIBLE, SIN SOMBRA NI MARCOS */
+  .card {
+    padding: 10px 12px 4px;        /* menos espacio, más compacto */
+    width: 240px;                  /* tamaño ideal para Notion */
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+    background: #ffffff;           /* igual que el fondo */
+    border-radius: 0;              /* sin bordes */
+    box-shadow: none;              /* sin sombra */
+  }
 
-    .avatar-wrapper {
-      width: 260px; 
-      height: 260px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  /* AVATAR CENTRADO Y MÁS ARRIBA */
+  .avatar-wrapper {
+    width: 200px;
+    height: 200px;
+    margin: -10px auto 2px;        /* lo sube un poquito */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
 
-    .avatar-layer {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      pointer-events: none;
-    }
+  .avatar-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+  }
 
-    .controls {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 10px;
-    }
+  /* CONTROLES MÁS COMPACTOS */
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;                     /* menos espacio entre filas */
+    margin-top: 4px;
+  }
 
-    .control-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
+  .control-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
 
-    .label {
-      min-width: 70px;
-      text-align: right;
-      font-size: 14px;
-    }
+  .label {
+    min-width: 55px;               /* más compacto */
+    text-align: right;
+    font-size: 13px;
+  }
 
-    button {
-      border-radius: 99px;
-      border: none;
-      padding: 6px 10px;
-      cursor: pointer;
-      background: #111827;
-      color: white;
-      font-size: 14px;
-    }
+  /* BOTONES MÁS PEQUEÑOS */
+  button {
+    border-radius: 99px;
+    border: none;
+    padding: 4px 8px;              /* antes era 6px 10px */
+    cursor: pointer;
+    background: #111827;
+    color: white;
+    font-size: 12px;               /* más pequeños */
+  }
 
-    button:active {
-      transform: scale(0.96);
-    }
+  button:active {
+    transform: scale(0.93);        /* animación linda */
+  }
 
-    .value {
-      min-width: 50px;
-      text-align: center;
-      font-size: 13px;
-      color: #6b7280;
-    }
-  </style>
+  /* TEXTO DEL VALOR MÁS COMPACTO */
+  .value {
+    min-width: 50px;
+    text-align: center;
+    font-size: 12px;
+    color: #6b7280;
+  }
+</style>
 </head>
 <body>
   <div class="card">
