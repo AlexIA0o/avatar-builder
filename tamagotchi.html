@@ -7,13 +7,28 @@
   <style>
     body {
       margin: 0;
-      background: #ffffff;
-      min-height: 100vh;
-      display: flex;
-      align-items:flex-start;  /* 🔥 arriba, no al centro */
-      overflow:hidden;         /* 🔥 evita scrollbars */
-      padding-top: 8px;        /* un poquito de aire */
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: white;
       font-family:system-ui, sans-serif;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .stage {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding-top: 10px;
+    }
+
+    .scale-wrap {
+      transform: scale(2.2); /* ← aquí cambias el tamaño */
+      transform-origin: top center;
     }
 
     /* TODO 1:1 (150x150) */
