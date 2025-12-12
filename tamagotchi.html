@@ -1,65 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Tamagotchi Avatar</title>
+  <meta charset="UTF-8" />
+  <title>Tamagotchi Avatar 1:1</title>
 
   <style>
     body {
       margin: 0;
       background: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: system-ui, sans-serif;
     }
 
-    /* Contenedor del tamagotchi (se adapta al PNG) */
+    /* TODO 1:1 (150x150) */
     .tamagotchi {
       position: relative;
-      width: 320px;       /* si lo quieres más grande/pequeño, cambia solo esto */
+      width: 150px;
+      height: 150px;
     }
 
     .frame {
-      width: 100%;
-      height: auto;
-      display: block;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-
-    /* Pantalla (AJUSTA top/left si lo necesitas) */
-    .screen {
-      position: absolute;
-      top: 90px;          /* <-- AJUSTA */
-      left: 85px;         /* <-- AJUSTA */
-      width: 150px;
-      height: 150px;
-      overflow: hidden;
-      pointer-events: none; /* para que los clicks no afecten aquí */
-    }
-
-    /* Capas del avatar (pixel perfect + zoom) */
-    .avatar-layer {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+      width: 150px;
+      height: 150px;
       image-rendering: pixelated;
-
-      transform: scale(2);           /* tu “zoom” */
-      transform-origin: center;
+      user-select: none;
+      -webkit-user-drag: none;
       pointer-events: none;
     }
 
-    /* Botones (encima de los verdes) */
+    /* PANTALLA dentro del PNG (ajusta estos 4 valores 1 sola vez) */
+    .screen {
+      position: absolute;
+      left: 38px;   /* <-- AJUSTA */
+      top: 38px;    /* <-- AJUSTA */
+      width: 74px;  /* <-- AJUSTA */
+      height: 74px; /* <-- AJUSTA */
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    /* Capas del avatar 1:1 */
+    .avatar-layer {
+      position: absolute;
+      inset: 0;
+      width: 150px;
+      height: 150px;
+      image-rendering: pixelated;
+      pointer-events: none;
+
+      /* 1:1 real: SIN SCALE */
+      transform: none;
+    }
+
+    /* Si quieres “zoom”, cámbialo aquí después (pero por defecto 1:1) */
+    /* .avatar-layer { transform: scale(2); transform-origin: center; } */
+
+    /* Botones clickeables (invisibles visualmente, con tu PNG encima) */
     .tama-btn {
       position: absolute;
-      width: 44px;       /* tamaño del área clickeable */
-      height: 44px;
-      border: none;
+      width: 28px;
+      height: 28px;
+      border: 0;
       background: transparent;
       padding: 0;
       cursor: pointer;
@@ -68,57 +74,56 @@
     }
 
     .tama-btn img {
-      width: 150px;      /* tus PNG son 150x150: los reducimos visualmente */
+      width: 150px;
       height: 150px;
-      transform: scale(0.28); /* 150px * 0.28 ≈ 42px */
-      transform-origin: center;
       image-rendering: pixelated;
       pointer-events: none;
       user-select: none;
       -webkit-user-drag: none;
+
+      /* Mostrar tu botón 150x150 dentro de un área 28x28:
+         en vez de escalarlo raro, recortamos con overflow.
+         Pero como img no recorta, hacemos “scale” solo al botón PNG */
+      transform: scale(0.19); /* 150 * 0.19 ≈ 28px */
+      transform-origin: center;
     }
 
-    /* efecto “se presiona” */
+    /* efecto de presionar */
     .tama-btn:active {
-      transform: translateY(2px) scale(0.96);
+      transform: translateY(1px) scale(0.96);
     }
 
-    /* Posiciones (AJUSTA estos 3 bloques para que calcen PERFECTO) */
-    .btn-1 { left: 78px;  top: 282px; }  /* Botón 1: Cara */
-    .btn-2 { left: 140px; top: 292px; }  /* Botón 2: Pelo */
-    .btn-3 { left: 206px; top: 282px; }  /* Botón 3: Skin */
+    /* POSICIONES 1:1 (ajusta 1 vez para que calcen con tus 3 circulitos verdes) */
+    .btn-1 { left: 38px; top: 118px; } /* Cara */
+    .btn-2 { left: 61px; top: 122px; } /* Pelo */
+    .btn-3 { left: 84px; top: 118px; } /* Skin/Raza */
   </style>
 </head>
 
 <body>
   <div class="tamagotchi">
-
-    <img
-      src="img0/tamagotchi/Tamagotchi.png"
-      alt="Tamagotchi"
-      class="frame"
-    >
+    <!-- Frame 150x150 -->
+    <img class="frame" src="img0/tamagotchi/Tamagotchi.png" alt="Tamagotchi" />
 
     <!-- Pantalla -->
     <div class="screen">
-      <img id="skinLayer" class="avatar-layer" src="img0/skin/Skin1.png" alt="Skin">
-      <img id="hairLayer" class="avatar-layer" src="img0/hair/Hair1.png" alt="Hair">
-      <img id="faceLayer" class="avatar-layer" src="img0/face/Face1.png" alt="Face">
+      <img id="skinLayer" class="avatar-layer" src="img0/skin/Skin1.png" alt="Skin" />
+      <img id="hairLayer" class="avatar-layer" src="img0/hair/Hair1.png" alt="Hair" />
+      <img id="faceLayer" class="avatar-layer" src="img0/face/Face1.png" alt="Face" />
     </div>
 
     <!-- Botones -->
     <button class="tama-btn btn-1" id="btnFace" aria-label="Cambiar cara">
-      <img src="img0/buttons/Button1.png" alt="">
+      <img src="img0/buttons/Button1.png" alt="" />
     </button>
 
     <button class="tama-btn btn-2" id="btnHair" aria-label="Cambiar pelo">
-      <img src="img0/buttons/Button2.png" alt="">
+      <img src="img0/buttons/Button2.png" alt="" />
     </button>
 
     <button class="tama-btn btn-3" id="btnSkin" aria-label="Cambiar skin">
-      <img src="img0/buttons/Button3.png" alt="">
+      <img src="img0/buttons/Button3.png" alt="" />
     </button>
-
   </div>
 
   <script>
@@ -129,7 +134,8 @@
         "img0/skin/Skin1.png",
         "img0/skin/Skin2.png",
         "img0/skin/Skin3.png",
-        "img0/skin/Skin4.png"
+        "img0/skin/Skin4.png",
+        "img0/skin/Skin5.png"
       ],
       hair: [
         "img0/hair/Hair1.png",
@@ -162,9 +168,37 @@
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return;
         const saved = JSON.parse(raw);
-
         state.skin = clampIndex(saved.skin, options.skin);
         state.hair = clampIndex(saved.hair, options.hair);
         state.face = clampIndex(saved.face, options.face);
+      } catch (e) {}
+    }
 
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {}
+    }
 
+    function render() {
+      document.getElementById("skinLayer").src = options.skin[state.skin];
+      document.getElementById("hairLayer").src = options.hair[state.hair];
+      document.getElementById("faceLayer").src = options.face[state.face];
+    }
+
+    function next(part) {
+      const arr = options[part];
+      state[part] = (state[part] + 1) % arr.length;
+      render();
+      saveState();
+    }
+
+    loadState();
+    render();
+
+    document.getElementById("btnFace").addEventListener("click", () => next("face"));
+    document.getElementById("btnHair").addEventListener("click", () => next("hair"));
+    document.getElementById("btnSkin").addEventListener("click", () => next("skin"));
+  </script>
+</body>
+</html>
