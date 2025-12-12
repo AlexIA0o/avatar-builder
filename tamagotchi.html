@@ -83,13 +83,11 @@
       pointer-events: none;
       user-select: none;
       -webkit-user-drag: none;
-      left: -38px;   /* mueve a la izquierda (negativo = va a la izquierda) */
-      top:  -38px;   /* mueve hacia arriba  (negativo = va hacia arriba) */
 
       /* Mostrar tu botón 150x150 dentro de un área 28x28:
          en vez de escalarlo raro, recortamos con overflow.
          Pero como img no recorta, hacemos “scale” solo al botón PNG */
-      transform: none;
+      transform: translateY(-38px); /* 👈 AJUSTA ESTE NÚMERO */
     }
 
     /* efecto de presionar */
