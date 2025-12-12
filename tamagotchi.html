@@ -42,8 +42,6 @@
       height: 74px; /* <-- AJUSTA */
       overflow: hidden;
       pointer-events: none;
-      outline: 2px dashed red;   /* 🔴 ver la pantalla */
-      background: rgba(255,0,0,0.05);
     }
 
     /* Capas del avatar 1:1 */
@@ -54,6 +52,8 @@
       height: 150px;
       image-rendering: pixelated;
       pointer-events: none;
+      left: -25px;   /* mueve a la izquierda (negativo = va a la izquierda) */
+      top:  -50px;   /* mueve hacia arriba  (negativo = va hacia arriba) */
 
       /* 1:1 real: SIN SCALE */
       transform: none;
@@ -73,7 +73,6 @@
       cursor: pointer;
       display: grid;
       place-items: center;
-      outline: 2px dashed blue;  /* 🔵 ver botones */
     }
 
     .tama-btn img {
