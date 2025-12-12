@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Tamagotchi Avatar</title>
+
   <style>
     body {
       margin: 0;
@@ -13,11 +14,82 @@
       min-height: 100vh;
       font-family: system-ui, sans-serif;
     }
+
+    /* CONTENEDOR DEL TAMAGOTCHI */
+    .tamagotchi {
+      position: relative;
+      width: 260px;   /* tamaño total del tamagotchi */
+      height: 320px;
+    }
+
+    /* IMAGEN DEL CUERPO */
+    .frame {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* PANTALLA DEL TAMAGOTCHI */
+    .screen {
+      position: absolute;
+
+      /* 🔴 AJUSTA ESTO SI ES NECESARIO */
+      top: 58px;
+      left: 50px;
+
+      width: 160px;
+      height: 160px;
+
+      overflow: hidden; /* 🔥 recorta lo que se salga */
+    }
+
+    /* CAPAS DEL AVATAR */
+    .avatar-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+    }
   </style>
 </head>
+
 <body>
 
-  <!-- aquí armaremos el tamagotchi -->
+  <div class="tamagotchi">
+
+    <!-- CUERPO DEL TAMAGOTCHI -->
+    <img
+      src="img0/tamagotchi/Tamagotchi.png"
+      alt="Tamagotchi"
+      class="frame"
+    >
+
+    <!-- PANTALLA -->
+    <div class="screen">
+      <img
+        id="skinLayer"
+        class="avatar-layer"
+        src="img0/skin/Skin1.png"
+        alt="Skin"
+      >
+      <img
+        id="hairLayer"
+        class="avatar-layer"
+        src="img0/hair/Hair1.png"
+        alt="Hair"
+      >
+      <img
+        id="faceLayer"
+        class="avatar-layer"
+        src="img0/face/Face1.png"
+        alt="Face"
+      >
+    </div>
+
+  </div>
 
 </body>
 </html>
+
