@@ -78,6 +78,7 @@
     .tama-btn img {
       width: 150px;
       height: 150px;
+      display: block;
       image-rendering: pixelated;
       pointer-events: none;
       user-select: none;
@@ -86,8 +87,7 @@
       /* Mostrar tu botón 150x150 dentro de un área 28x28:
          en vez de escalarlo raro, recortamos con overflow.
          Pero como img no recorta, hacemos “scale” solo al botón PNG */
-      transform: scale(0.19); /* 150 * 0.19 ≈ 28px */
-      transform-origin: center;
+      transform: none;
     }
 
     /* efecto de presionar */
